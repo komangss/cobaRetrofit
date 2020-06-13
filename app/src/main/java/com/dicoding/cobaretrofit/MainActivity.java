@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
     private void getPosts() {
 
 //        to execute the network request, we have to use call object that you write earlier
-        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(4); // because retrofit call an implementation of this api
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(1, 4, "id", "desc"); // if you don't want use some of this parameter, you can set it to null
+//        but we cant pass null to primitive type of variable (int) then change to Integer
 
 //        we don't use call.execute() // because this is asynchronous, we run in main thread and it will freeze our app
 //        but we don't need to create new thread, we just use retrofit method call enqueue

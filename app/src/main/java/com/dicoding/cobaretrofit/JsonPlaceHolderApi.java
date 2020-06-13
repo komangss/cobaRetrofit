@@ -22,7 +22,10 @@ public interface JsonPlaceHolderApi {
     @GET("posts/{id}/comments")
     Call<List<Comment>> getComment(@Path("id") int postId); // to tell retrofit the path is use this variable, we use PATH annotation
 
-    //    new getPost // https://jsonplaceholder.typicode.com/posts?userId=/ /&
+    //    new getPost // https://jsonplaceholder.typicode.com/posts?userId=userId&_sort=sort&_order=order
     @GET("posts")
-    Call<List<Post>> getPosts(@Query("userId") int userId); // this query is after ? in url
+    Call<List<Post>> getPosts(@Query("userId") Integer userId,
+                              @Query("userId") Integer userId2,
+                              @Query("_sort") String sort,
+                              @Query("_order") String order); // this query is after ? in url
 }
