@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface JsonPlaceHolderApi {
 
@@ -17,6 +18,6 @@ public interface JsonPlaceHolderApi {
 //    to tell retrofit what to do,
 //    we have to annotate this method (GET)
 
-    @GET("posts/2/comments")
-    Call<List<Comment>> getComment();
+    @GET("posts/{id}/comments")
+    Call<List<Comment>> getComment(@Path("id") int postId); // to tell retrofit the path is use this variable, we use PATH annotation
 }
