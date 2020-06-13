@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvResult;
+    private JsonPlaceHolderApi jsonPlaceHolderApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,46 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
 //        remember this is not interface, this is the job of retrofit
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+//        getPosts();
+        getComments();
+    }
+
+    private void getComments() {
+        Call<List<Comment>> call = jsonPlaceHolderApi.getComment();
+
+        call.enqueue(new Callback<List<Comment>>() {
+            @Override
+            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                if (!response.isSuccessful()) {
+                    tvResult.setText("Code : " + response.code());
+                    return;
+                }
+
+                List<Comment> comments = response.body();
+                ;
+
+                for (Comment comment : comments) {
+                    String content = "";
+                    content += "ID: " + comment.getId() + "\n";
+                    content += "Post ID: " + comment.getPostId() + "\n";
+                    content += "Name: " + comment.getName() + "\n";
+                    content += "Email: " + comment.getEmail() + "\n";
+                    content += "Text: " + comment.getText() + "\n\n";
+
+                    tvResult.append(content);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Comment>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getPosts() {
 
 //        to execute the network request, we have to use call object that you write earlier
         Call<List<Post>> call = jsonPlaceHolderApi.getPost(); // because retrofit call an implementation of this api
@@ -64,5 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
 

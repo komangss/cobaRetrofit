@@ -16,4 +16,7 @@ public interface JsonPlaceHolderApi {
 //    and this is how retrofit ll take care off
 //    to tell retrofit what to do,
 //    we have to annotate this method (GET)
+
+    @GET("posts/2/comments")
+    Call<List<Comment>> getComment();
 }
