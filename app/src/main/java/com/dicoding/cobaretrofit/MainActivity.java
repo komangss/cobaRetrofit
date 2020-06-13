@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 //        remember this is not interface, this is the job of retrofit
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-//        getPosts();
-        getComments();
+        getPosts();
+//        getComments();
     }
 
     private void getComments() {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void getPosts() {
 
 //        to execute the network request, we have to use call object that you write earlier
-        Call<List<Post>> call = jsonPlaceHolderApi.getPost(); // because retrofit call an implementation of this api
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(4); // because retrofit call an implementation of this api
 
 //        we don't use call.execute() // because this is asynchronous, we run in main thread and it will freeze our app
 //        but we don't need to create new thread, we just use retrofit method call enqueue
