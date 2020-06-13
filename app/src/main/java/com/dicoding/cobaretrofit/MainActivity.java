@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,8 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPosts() {
 
+//        USING QUERYMAP
+//        Create a map object
+        Map<String, String> parameters = new HashMap<>(); // Google them xD
+        parameters.put("userId", "1");  // hash map can only take each key one time
+        parameters.put("_sort", "id");
+        parameters.put("_order", "desc");
+
+//        then we can put this map query parameter to the get method
+        Call<List<Post>> call = jsonPlaceHolderApi.getPostsUsingQueryMap(parameters);
+
 //        to execute the network request, we have to use call object that you write earlier
-        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(new Integer[]{2, 3, 6}, "id", "desc"); // if you don't want use some of this parameter, you can set it to null
+//        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(new Integer[]{2, 3, 6}, "id", "desc"); // if you don't want use some of this parameter, you can set it to null
 //        but we cant pass null to primitive type of variable (int) then change to Integer
 
 //        we don't use call.execute() // because this is asynchronous, we run in main thread and it will freeze our app

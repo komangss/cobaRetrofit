@@ -1,11 +1,13 @@
 package com.dicoding.cobaretrofit;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface JsonPlaceHolderApi {
 
@@ -27,4 +29,7 @@ public interface JsonPlaceHolderApi {
     Call<List<Post>> getPosts(@Query("userId") Integer[] userId, // if you want use varargs (Integer... userId)  you must place it at last parameter
                               @Query("_sort") String sort,
                               @Query("_order") String order);
+
+    @GET("posts")
+    Call<List<Post>> getPostsUsingQueryMap(@QueryMap Map<String, String> parameters);
 }
