@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         // with this retrofit instance here we can now create our JsonPlaceHolderApi
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/posts")
+                .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create()) // this how we define that we want to parse the json
                 .build();
 
