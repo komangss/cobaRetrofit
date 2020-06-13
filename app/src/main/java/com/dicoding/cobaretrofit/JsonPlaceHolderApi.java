@@ -24,8 +24,7 @@ public interface JsonPlaceHolderApi {
 
     //    new getPost // https://jsonplaceholder.typicode.com/posts?userId=userId&_sort=sort&_order=order
     @GET("posts")
-    Call<List<Post>> getPosts(@Query("userId") Integer userId,
-                              @Query("userId") Integer userId2,
+    Call<List<Post>> getPosts(@Query("userId") Integer[] userId, // if you want use varargs (Integer... userId)  you must place it at last parameter
                               @Query("_sort") String sort,
-                              @Query("_order") String order); // this query is after ? in url
+                              @Query("_order") String order);
 }
