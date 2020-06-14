@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private void createPosts() {
 //        in real app we normally take user input
         Post post = new Post(23, "New Title", "New Text");
-        Call<Post> call = jsonPlaceHolderApi.createPost(post);
+        Call<Post> call = jsonPlaceHolderApi.createPostWithFormUrlEncoded(23, "New Title", "New Text");
 
         call.enqueue(new Callback<Post>() {
             @Override
