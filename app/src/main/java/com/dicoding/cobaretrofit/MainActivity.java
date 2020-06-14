@@ -43,7 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private void createPosts() {
 //        in real app we normally take user input
         Post post = new Post(23, "New Title", "New Text");
-        Call<Post> call = jsonPlaceHolderApi.createPostWithFormUrlEncoded(23, "New Title", "New Text");
+        Map<String, String> fields = new HashMap<>();
+        fields.put("userId", "25");
+        fields.put("title", "New Title");
+
+        Call<Post> call = jsonPlaceHolderApi.createPostWithFieldMap(fields);
+
+//        Call<Post> call = jsonPlaceHolderApi.createPostWithFormUrlEncoded(23, "New Title", "New Text");
 
         call.enqueue(new Callback<Post>() {
             @Override
@@ -86,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 List<Comment> comments = response.body();
-                ;
 
                 for (Comment comment : comments) {
                     String content = "";
