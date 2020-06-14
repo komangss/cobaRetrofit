@@ -35,13 +35,14 @@ public class MainActivity extends AppCompatActivity {
 //        remember this is not interface, this is the job of retrofit
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        getPosts();
-//        getComments();
+//        getPosts();
+        getComments();
     }
 
     private void getComments() {
-        Call<List<Comment>> call = jsonPlaceHolderApi.getComment(3);
-
+//        Call<List<Comment>> call = jsonPlaceHolderApi.getComment(3);
+        Call<List<Comment>> call = jsonPlaceHolderApi.
+                getCommentsWIthUrl("posts/3/comments");
         call.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
